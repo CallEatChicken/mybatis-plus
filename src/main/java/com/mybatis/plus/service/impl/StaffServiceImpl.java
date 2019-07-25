@@ -54,4 +54,9 @@ public class StaffServiceImpl extends ServiceImpl<StaffMapper, Staff> implements
 		new Thread(thread).start(); 
 	}
 
+	@Override
+	public Staff selectStaffById(long id) {
+		return baseMapper.selectStaffById(id);
+	}
+
 }

@@ -14,5 +14,13 @@
     <sql id="Base_Column_List">
         id, userId, shopName, shopId
     </sql>
+    
+    <select id="selectListByWrapper" resultType="com.mybatis.plus.bean.StaffOrder">
+		SELECT * FROM staff_order
+		<!-- 判断 wrapper 是否为空 emptyOfWhere -->
+		<where>
+			${ew.sqlSegment}
+		</where>
+	</select>
 
 </mapper>

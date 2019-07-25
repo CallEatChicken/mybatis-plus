@@ -32,5 +32,8 @@ public class StaffOrder implements Serializable {
     @TableField("shopId")
     private Long shopId;
 
+    private String staffName;
+    
+    
 
 }

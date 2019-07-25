@@ -1,12 +1,6 @@
 package com.mybatis.plus.bean;
 
-import java.io.Serializable;
-import java.sql.Date;
-
-
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 /**
  * <p>
@@ -16,6 +10,7 @@ import lombok.experimental.Accessors;
  * @author wzf
  * @since 2019-07-25
  */
+@Data
 @SuppressWarnings("serial")
 public class Staff extends SuperEntity<Staff> {
 
@@ -27,51 +22,6 @@ public class Staff extends SuperEntity<Staff> {
 
     private String tel;
 
-    
-    
-
-	public String getName() {
-		return name;
-	}
-
-
-
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-
-
-
-	public String getSex() {
-		return sex;
-	}
-
-
-
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
-
-
-
-	public String getTel() {
-		return tel;
-	}
-
-
-
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-
-
-
 	public Staff(Long id, String name, String sex, String tel) {
 		super(id);
 		this.name = name;
@@ -79,7 +29,9 @@ public class Staff extends SuperEntity<Staff> {
 		this.tel = tel;
 	}
 
-    
-    
+	@Override
+	public String toString() {
+		return "Staff [name=" + name + ", sex=" + sex + ", tel=" + tel + "]";
+	}
 
 }

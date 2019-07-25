@@ -4,6 +4,8 @@ import com.mybatis.plus.bean.Staff;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 
@@ -24,5 +26,7 @@ public interface StaffService extends IService<Staff> {
 	public List<Staff> selectListByWrapper(Wrapper wrapper);
 	
 	public void testadd();
+	
+	public Staff selectStaffById(@Param("id") long id);
 
 }

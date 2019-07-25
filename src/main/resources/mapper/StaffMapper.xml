@@ -26,5 +26,12 @@
 			${ew.sqlSegment}
 		</where>
 	</select>
+	
+	<select id="selectStaffById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+		SELECT 
+    	<include refid="Base_Column_List" />
+	    FROM staff
+	    WHERE id = #{id,jdbcType=VARCHAR}
+	</select>
 
 </mapper>

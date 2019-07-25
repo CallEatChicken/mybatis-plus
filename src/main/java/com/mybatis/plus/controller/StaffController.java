@@ -173,5 +173,16 @@ public class StaffController {
 	   staffService.testadd();
 	  
    }
+   
+   /**
+    * selectStaffById
+    * http://localhost:8181/staff/selectStaffById
+    */
+   @GetMapping("/selectStaffById")
+   public void selectStaffById(){
+	   long id = 314192325867868160L;
+	   Staff staff = staffService.selectStaffById(id);
+	   System.out.println(staff.toString());
+   }
 
 }

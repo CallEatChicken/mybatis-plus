@@ -29,4 +29,6 @@ public interface StaffMapper extends BaseMapper<Staff> {
 	 List<Staff> selectListBySQL();
 	
 	 List<Staff> selectListByWrapper(@Param("ew") Wrapper wrapper);
+	 
+	 Staff selectStaffById(@Param("id") long id);
 }

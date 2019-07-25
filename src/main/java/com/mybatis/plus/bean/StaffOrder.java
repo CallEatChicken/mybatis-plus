@@ -1,5 +1,6 @@
 package com.mybatis.plus.bean;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import java.io.Serializable;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -11,22 +12,25 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author wzf
- * @since 2019-07-24
+ * @since 2019-07-25
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-public class Order implements Serializable {
+public class StaffOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String id;
+    private Long id;
 
-    private String userId;
+    @TableField("userId")
+    private Long userId;
 
+    @TableField("shopName")
     private String shopName;
 
-    private String shopId;
+    @TableField("shopId")
+    private Long shopId;
 
 
 }

@@ -85,7 +85,8 @@ public class CodeGenerator {
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
         strategy.setEntityLombokModel(true);
-        strategy.setInclude(new String[]{rb.getString("tableName")});
+//        strategy.setInclude(new String[]{rb.getString("tableName")});
+        strategy.setInclude(rb.getString("tableName").split(","));
         mpg.setStrategy(strategy);
         mpg.setTemplateEngine(new FreemarkerTemplateEngine());
         mpg.execute();

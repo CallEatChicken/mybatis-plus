@@ -1,6 +1,6 @@
 package com.mybatis.plus.service;
 
-import com.mybatis.plus.bean.Order;
+import com.mybatis.plus.bean.StaffOrder;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -9,8 +9,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author wzf
- * @since 2019-07-24
+ * @since 2019-07-25
  */
-public interface OrderService extends IService<Order> {
+public interface StaffOrderService extends IService<StaffOrder> {
 
 }

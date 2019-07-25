@@ -1,5 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
+encoding//src/main/java/com/mybatis/plus/util/SnowflakeIdWorker.java=GBK
 encoding//src/main/resources=UTF-8
 encoding//src/main/resources/mybatis-plus.properties=UTF-8
 encoding//src/test/java=UTF-8

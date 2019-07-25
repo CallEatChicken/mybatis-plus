@@ -1,6 +1,6 @@
 package com.mybatis.plus.service;
 
-import com.mybatis.plus.bean.UserOrder;
+import com.mybatis.plus.bean.Staff;
 
 import java.util.List;
 
@@ -13,10 +13,14 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * </p>
  *
  * @author wzf
- * @since 2019-07-24
+ * @since 2019-07-25
  */
-public interface UserOrderService extends IService<UserOrder> {
+public interface StaffService extends IService<Staff> {
 
-	public List<UserOrder> selectListByWrapper(Wrapper wrapper);
-	
+	int deleteAll();
+
+	public List<Staff> selectListBySQL();
+
+	public List<Staff> selectListByWrapper(Wrapper wrapper);
+
 }

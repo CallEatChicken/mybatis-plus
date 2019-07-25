@@ -3,6 +3,7 @@ package com.mybatis.plus.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -11,9 +12,15 @@ import com.mybatis.plus.bean.Staff;
 import com.mybatis.plus.service.StaffService;
 import com.mybatis.plus.util.SnowflakeIdWorker;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,6 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author wzf
  * @since 2019-07-25
  */
+@Api(value = "用户接口 ")
 @Controller
 @RequestMapping("/staff")
 public class StaffController {
@@ -36,9 +44,10 @@ public class StaffController {
 	   * 插入 OR 修改
      * http://localhost:8181/staff/test1
      */
-    @GetMapping("/test1")
-    public String test3() {
-        Staff staff = new Staff(new SnowflakeIdWorker(1,1).nextId(), "王zf", "男","13488125646");
+	@ApiOperation(value = "新增用户" ,  notes="新增注册")
+	@RequestMapping(value="/test1",method=RequestMethod.GET)
+    public String test1() {
+        Staff staff = new Staff(new SnowflakeIdWorker(1,1).nextId(), "111", "男","666");
         boolean b = staffService.saveOrUpdate(staff);
         System.out.println("插入 OR 修改"+b);
         if(b) {
@@ -52,7 +61,8 @@ public class StaffController {
      * 增删改查 CRUD
      * http://localhost:8181/staff/test2
      */
-    @GetMapping("/test2")
+	@ApiOperation(value = "增删改查 CRUD" ,  notes="增删改查 CRUD")
+	@RequestMapping(value="/test2",method=RequestMethod.GET)
     public Staff test2() {
         System.err.println("删除一条数据：" + staffService.removeById(1L));
         System.err.println("插入一条数据：" + staffService.save(new Staff(new SnowflakeIdWorker(1,1).nextId(), "王zf", "男","13488125646")));
@@ -84,6 +94,7 @@ public class StaffController {
      * 启动  Application 加上 @EnableTransactionManagement 注解其实可无默认貌似就开启了<br>
      * 需要事物的方法加上 @Transactional 必须的哦！！
      */
+	@ApiOperation(value = "测试事物" ,  notes="测试事物")
     @Transactional(rollbackFor = Exception.class)
     @GetMapping("/test_transactional")
     public void testTransactional() {
@@ -104,6 +115,7 @@ public class StaffController {
      * 集合模式，不进行分页直接返回所有结果集：
      * http://localhost:8181/staff/page?listMode=true
      */
+	@ApiOperation(value = "参数模式分页" ,  notes="参数模式分页")
     @GetMapping("/page")
     public IPage page(Page page, boolean listMode) {
         if (listMode) {
@@ -127,6 +139,7 @@ public class StaffController {
     /**
      * http://localhost:8181/staff/select_sql
      */
+    @ApiOperation(value = "自定义查询" ,  notes="自定义查询")
     @GetMapping("/select_sql")
     public Object getStaffBySql() {
         return staffService.selectListBySQL();
@@ -136,6 +149,7 @@ public class StaffController {
     * AR 部分测试
     * http://localhost:8181/staff/test
     */
+   @ApiOperation(value = "AR 部分测试" ,  notes="AR 部分测试")
    @GetMapping("/test")   //实体继承Model的使用CRUD
    public IPage<Staff> test() {
 	   Staff staff = new Staff(1L, "wz","nan","123456");
@@ -149,9 +163,10 @@ public class StaffController {
    }
    
    /**
-    * AR 部分测试
+    * testadd新增线程
     * http://localhost:8181/staff/testadd
     */
+   @ApiOperation(value = "testadd新增线程" ,  notes="testadd新增线程")
    @GetMapping("/testadd")   //实体继承Model的使用CRUD
    public void testadd() {
 	   

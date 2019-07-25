@@ -12,7 +12,7 @@
 	</delete>
 
 	<select id="selectListByWrapper" resultType="com.mybatis.plus.bean.User">
-		SELECT * FROM USER
+		SELECT * FROM user
 		<!-- 判断 wrapper 是否为空 emptyOfWhere -->
 		<where>
 			${ew.sqlSegment}

@@ -5,8 +5,12 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.mybatis.plus.bean.User;
+import com.mybatis.plus.bean.UserOrder;
 import com.mybatis.plus.mapper.UserMapper;
 import com.mybatis.plus.service.UserService;
 
@@ -27,5 +31,11 @@ public class UserSerivceImpl extends ServiceImpl<UserMapper, User> implements Us
 	public List<User> selectListByWrapper(Wrapper wrapper) {
 		return baseMapper.selectListByWrapper(wrapper);
 	}
+	
+	@Override
+	public User getUser(String id) {
+		return baseMapper.selectById(id);
+	}
+	
 }
 

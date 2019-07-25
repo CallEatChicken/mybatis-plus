@@ -18,5 +18,5 @@ public interface UserService extends IService<User>{
 	public List<User> selectListBySQL();
 
 	public List<User> selectListByWrapper(Wrapper wrapper);
-	
+	public User getUser(String id);
 }

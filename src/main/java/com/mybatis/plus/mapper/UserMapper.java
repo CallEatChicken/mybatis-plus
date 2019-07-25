@@ -21,5 +21,5 @@ public interface UserMapper extends BaseMapper<User>{
     List<User> selectListBySQL();
 
     List<User> selectListByWrapper(@Param("ew") Wrapper wrapper);
-    
+
 }

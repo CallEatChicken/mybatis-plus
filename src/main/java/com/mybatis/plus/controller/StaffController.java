@@ -134,7 +134,7 @@ public class StaffController {
     
     /**
     * AR 部分测试
-    * http://localhost:8181/user/test
+    * http://localhost:8181/staff/test
     */
    @GetMapping("/test")   //实体继承Model的使用CRUD
    public IPage<Staff> test() {
@@ -146,6 +146,17 @@ public class StaffController {
        staff.setName("mybatis-plus-ar");
        System.err.println("更新：" + staff.updateById());
        return staff.selectPage(new Page<Staff>(0, 12), null);
+   }
+   
+   /**
+    * AR 部分测试
+    * http://localhost:8181/staff/testadd
+    */
+   @GetMapping("/testadd")   //实体继承Model的使用CRUD
+   public void testadd() {
+	   
+	   staffService.testadd();
+	  
    }
 
 }

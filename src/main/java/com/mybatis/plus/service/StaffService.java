@@ -22,5 +22,7 @@ public interface StaffService extends IService<Staff> {
 	public List<Staff> selectListBySQL();
 
 	public List<Staff> selectListByWrapper(Wrapper wrapper);
+	
+	public void testadd();
 
 }

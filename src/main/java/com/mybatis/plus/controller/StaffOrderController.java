@@ -3,6 +3,7 @@ package com.mybatis.plus.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.mybatis.plus.bean.Staff;
@@ -10,7 +11,6 @@ import com.mybatis.plus.bean.StaffOrder;
 import com.mybatis.plus.service.StaffOrderService;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 
 /**
  * <p>
@@ -20,7 +20,7 @@ import org.springframework.stereotype.Controller;
  * @author wzf
  * @since 2019-07-25
  */
-@Controller
+@RestController
 @RequestMapping("/staffOrder")
 public class StaffOrderController {
 	

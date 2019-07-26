@@ -4,24 +4,23 @@ package com.mybatis.plus.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.mybatis.plus.bean.Staff;
 import com.mybatis.plus.service.StaffService;
+import com.mybatis.plus.util.Result;
 import com.mybatis.plus.util.SnowflakeIdWorker;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 
-import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
@@ -33,7 +32,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @since 2019-07-25
  */
 @Api(value = "用户接口 ")
-@Controller
+@RestController
 @RequestMapping("/staff")
 public class StaffController {
 	
@@ -46,14 +45,14 @@ public class StaffController {
      */
 	@ApiOperation(value = "新增用户" ,  notes="新增注册")
 	@RequestMapping(value="/test1",method=RequestMethod.GET)
-    public String test1() {
+    public Result<Staff> test1() {
         Staff staff = new Staff(new SnowflakeIdWorker(1,1).nextId(), "111", "男","666");
         boolean b = staffService.saveOrUpdate(staff);
         System.out.println("插入 OR 修改"+b);
         if(b) {
-        	return "success";
+        	return Result.success(200, staff);
         }
-        return "error";
+        return Result.error(400, "error");
     }
     
     
@@ -63,7 +62,7 @@ public class StaffController {
      */
 	@ApiOperation(value = "增删改查 CRUD" ,  notes="增删改查 CRUD")
 	@RequestMapping(value="/test2",method=RequestMethod.GET)
-    public Staff test2() {
+    public Result<Staff> test2() {
         System.err.println("删除一条数据：" + staffService.removeById(1L));
         System.err.println("插入一条数据：" + staffService.save(new Staff(new SnowflakeIdWorker(1,1).nextId(), "王zf", "男","13488125646")));
         Staff user = new Staff(new SnowflakeIdWorker(1,1).nextId(), "王zf", "男","13488125646");
@@ -82,7 +81,7 @@ public class StaffController {
         System.err.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         userListPage = staffService.page(new Page<Staff>(1, 5), new QueryWrapper<Staff>().orderByDesc("name"));
         System.err.println("total=" + userListPage.getTotal() + ", current list size=" + userListPage.getRecords().size());
-        return staffService.getById(id);
+        return Result.success(200, staffService.getById(id));
     }
     
     /**
@@ -117,23 +116,24 @@ public class StaffController {
      */
 	@ApiOperation(value = "参数模式分页" ,  notes="参数模式分页")
     @GetMapping("/page")
-    public IPage page(Page page, boolean listMode) {
+    public Result<IPage> page(Page page, boolean listMode) {
         if (listMode) {
             // size 小于 0 不在查询 total 及分页，自动调整为列表模式。
             // 注意！！这个地方自己控制好！！
             page.setSize(-1);
         }
-        return staffService.page(page, null);
+        return Result.success(200, staffService.page(page, null));
     }
     
     /**
      * http://localhost:8181/staff/select_wrapper
      */
     @GetMapping("/select_wrapper")
-    public Object getUserByWrapper() {
-        return staffService.selectListByWrapper(new QueryWrapper<Staff>()
+    public Result<List<Staff>> getStaffByWrapper() {
+    	List<Staff> list = staffService.selectListByWrapper(new QueryWrapper<Staff>()
                 .lambda().like(Staff::getName, "毛")
                 .or(e -> e.like(Staff::getName, "张")));
+        return Result.success(200, list);
     }
     
     /**
@@ -141,8 +141,8 @@ public class StaffController {
      */
     @ApiOperation(value = "自定义查询" ,  notes="自定义查询")
     @GetMapping("/select_sql")
-    public Object getStaffBySql() {
-        return staffService.selectListBySQL();
+    public Result<List<Staff>> getStaffBySql() {
+        return Result.success(200,staffService.selectListBySQL());
     }
     
     /**
@@ -151,7 +151,7 @@ public class StaffController {
     */
    @ApiOperation(value = "AR 部分测试" ,  notes="AR 部分测试")
    @GetMapping("/test")   //实体继承Model的使用CRUD
-   public IPage<Staff> test() {
+   public Result<IPage<Staff>> test() {
 	   Staff staff = new Staff(1L, "wz","nan","123456");
        System.err.println("删除所有：" + staff.delete(null));
        staff.setName("ttt");
@@ -159,7 +159,7 @@ public class StaffController {
        System.err.println("查询插入结果：" + staff.selectById().toString());
        staff.setName("mybatis-plus-ar");
        System.err.println("更新：" + staff.updateById());
-       return staff.selectPage(new Page<Staff>(0, 12), null);
+       return Result.success(200, staff.selectPage(new Page<Staff>(0, 12), null));
    }
    
    /**
@@ -169,9 +169,7 @@ public class StaffController {
    @ApiOperation(value = "testadd新增线程" ,  notes="testadd新增线程")
    @GetMapping("/testadd")   //实体继承Model的使用CRUD
    public void testadd() {
-	   
 	   staffService.testadd();
-	  
    }
    
    /**
@@ -179,10 +177,11 @@ public class StaffController {
     * http://localhost:8181/staff/selectStaffById
     */
    @GetMapping("/selectStaffById")
-   public void selectStaffById(){
+   public Result<Staff> selectStaffById(){
 	   long id = 314192325867868160L;
 	   Staff staff = staffService.selectStaffById(id);
 	   System.out.println(staff.toString());
+	return Result.success(200, staff);
    }
 
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 //监听事件
 @Service
-public class SmsEvent implements SmartApplicationListener{
+public class SmsListener implements SmartApplicationListener{
 
 	//事件发生的时候
 	@Override
@@ -17,7 +17,7 @@ public class SmsEvent implements SmartApplicationListener{
 	//执行顺序，多个坚挺，值越大，越往后
 	@Override
 	public int getOrder() {
-		return 60;
+		return 0;
 	}
 
 	//仅仅坚挺指定的事件

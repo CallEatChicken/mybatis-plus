@@ -1,6 +1,7 @@
 ### mybatis-plus
 -   Spring boot
 -   mybatiesPlus
+-   rabbitmq
 -   lombok
 -   eclispe[IDE]
 

@@ -18,5 +18,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface StaffOrderService extends IService<StaffOrder> {
 	
 	public List<StaffOrder> selectListByWrapper(Wrapper wrapper);
+	
+	public void save();
 
 }

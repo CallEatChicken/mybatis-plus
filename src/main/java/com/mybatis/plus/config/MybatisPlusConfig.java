@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.ibatis.reflection.MetaObject;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -71,7 +72,7 @@ public class MybatisPlusConfig {
 //        });
         return paginationInterceptor;
     }
-
+    
     /**
      * 相当于顶部的：
      * {@code @MapperScan("com.mybatis.plus.mapper*")}

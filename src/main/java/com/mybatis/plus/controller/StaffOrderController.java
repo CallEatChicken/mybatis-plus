@@ -36,5 +36,13 @@ public class StaffOrderController {
                 .lambda().like(StaffOrder::getShopName, "苹")
                 .or(e -> e.like(StaffOrder::getShopName, "栗")));
     }
+    
+    /**
+     * http://localhost:8080/staffOrder/testOrder
+     */
+    @GetMapping("/testOrder")
+	public void test1() {
+		staffOrderService.save();
+	}
 
 }

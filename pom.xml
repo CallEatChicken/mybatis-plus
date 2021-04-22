@@ -17,7 +17,7 @@
 		<shiro-core.version>1.2.5</shiro-core.version>
 		<shiro-web.version>1.2.5</shiro-web.version>
 		<shiro-ehcache.version>1.2.5</shiro-ehcache.version>
-		<shiro-spring.version>1.2.5</shiro-spring.version>
+		<shiro-spring.version>1.7.0</shiro-spring.version>
 	</properties>
 
     <dependencies>

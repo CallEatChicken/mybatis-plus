@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<shiro-core.version>1.2.5</shiro-core.version>
+		<shiro-core.version>1.6.0</shiro-core.version>
 		<shiro-web.version>1.2.5</shiro-web.version>
 		<shiro-ehcache.version>1.2.5</shiro-ehcache.version>
 		<shiro-spring.version>1.2.5</shiro-spring.version>
